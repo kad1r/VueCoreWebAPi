@@ -40,7 +40,11 @@
           <input v-model="product.isactive" type="checkbox" id="isactive" />
         </div>
         <div class="form-group row">
-          <button type="submit" class="btn btn-primary offset-sm-2">Submit</button>
+          <button
+            type="button"
+            v-on:click.stop.prevent="onSubmit(product)"
+            class="btn btn-primary offset-sm-2"
+          >Submit</button>
         </div>
       </div>
     </div>
@@ -54,6 +58,12 @@ export default {
     return {
       product: {}
     };
+  },
+  methods: {
+    onSubmit: function(product) {
+      console.log(product);
+      alert("submitted");
+    }
   },
   created() {
     // fetch(url)
