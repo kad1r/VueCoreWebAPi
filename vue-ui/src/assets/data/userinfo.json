@@ -1,0 +1,10 @@
+{
+  "user": { "id": 1, "fullname": "Kadir Avcı" },
+  "links": [
+    { "id": 1, "title": "Home", "url": "/" },
+    { "id": 2, "title": "Categories", "url": "/category" },
+    { "id": 3, "title": "Product", "url": "/product" },
+    { "id": 4, "title": "About", "url": "/about" },
+    { "id": 5, "title": "Help", "url": "/help" }
+  ]
+}
