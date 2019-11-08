@@ -13,7 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse mr-auto" id="authentication">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" v-for="link in userinfo.links" :key="link.Id">
           <router-link :to="link.url">{{link.title}}</router-link>
@@ -27,16 +27,24 @@
           <a data-id="userinfo.user.id" href="javascript:void(0)">{{userinfo.user.fullname}}</a>
         </li>
       </ul>
+      <NavigationYears class="ml-auto" @yearChanged="year"></NavigationYears>
+      Selected Year: {{year}}
     </div>
   </nav>
 </template>
 
 <script>
+import NavigationYears from "@/components/Years.vue";
+
 export default {
   name: "navbar",
+  components: {
+    NavigationYears
+  },
   data() {
     return {
-      userinfo: []
+      userinfo: [],
+      year: 2019
     };
   },
   created() {
@@ -64,6 +72,7 @@ export default {
 <style scoped>
 nav {
   margin-bottom: 30px;
+  color: #fff;
 }
 .navbar-nav li {
   margin-left: 15px;
