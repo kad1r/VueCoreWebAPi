@@ -71,7 +71,8 @@ export default {
       product: {
         category: 0
       },
-      updateComp: false
+      updateComp: false,
+      year: 2019
     };
   },
   validations: {
@@ -86,6 +87,7 @@ export default {
       this.updateComp = update;
     },
     onSubmit: function(product) {
+      console.log("year is -> " + this.$store.state.year.year);
       this.$v.$touch();
       debugger;
       if (this.$v.$invalid || this.$v.$error) return;

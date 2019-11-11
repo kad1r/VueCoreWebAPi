@@ -28,7 +28,7 @@
         </li>
       </ul>
       <NavigationYears class="ml-auto" @yearChanged="year"></NavigationYears>
-      Selected Year: {{year}}
+      <span style="margin-left:5px;">Selected Year: {{this.$store.state.year.year}}</span>
     </div>
   </nav>
 </template>
@@ -46,6 +46,9 @@ export default {
       userinfo: [],
       year: 2019
     };
+  },
+  mounted() {
+    console.log("navigation mounted!");
   },
   created() {
     if (this.userinfo != null && this.userinfo.length > 0) {

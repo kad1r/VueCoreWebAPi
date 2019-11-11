@@ -3,8 +3,9 @@
     <div id="nav">
       <NavBar :links="null" :userinfo="null"></NavBar>
     </div>
-    <div class="row">
+    <div>
       <div class="col">{{year.year}}</div>
+      <HelloWorld msg="this is unrelated component"></HelloWorld>
     </div>
     <router-view />
   </div>

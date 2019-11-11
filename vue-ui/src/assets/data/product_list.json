@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "year": "2019",
+    "title": "Product 1",
+    "price": "3.95",
+    "description": "",
+    "url": "/"
+  },
+  {
+    "id": 2,
+    "year": "2020",
+    "title": "Product 2",
+    "price": "2.21",
+    "description": "",
+    "url": "/"
+  },
+  {
+    "id": 3,
+    "year": "2019",
+    "title": "Product 3",
+    "price": "2.82",
+    "description": "",
+    "url": "/"
+  },
+  {
+    "id": 4,
+    "year": "2020",
+    "title": "Product 4",
+    "price": "4.95",
+    "description": "",
+    "url": "/"
+  },
+  {
+    "id": 5,
+    "year": "2021",
+    "title": "Product 5",
+    "price": "8.18",
+    "description": "",
+    "url": "/"
+  }
+]

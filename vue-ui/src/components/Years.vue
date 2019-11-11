@@ -15,14 +15,10 @@ export default {
       console.log(event.target.value);
       console.log(this.$route.path);
       this.updateSelectedYear(event.target.value);
-      // this.$emit("yearChanged", event.target.value);
-      // This is not a best practice
-      //vm.$forceUpdate();
-      // location.reload(this.$route.path);
     }
   },
   computed: {
-    ...mapState[("year", "message")],
+    ...mapState["year"],
     ...mapGetters(["getSelectedYear"])
   }
 };

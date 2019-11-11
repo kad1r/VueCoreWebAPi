@@ -7,6 +7,7 @@ import Vuelidate from "vuelidate";
 import "bootstrap-css-only/css/bootstrap.min.css";
 
 Vue.component("NavBar", require("./components/Navigation.vue").default);
+Vue.component("HelloWorld", require("./components/HelloWorld.vue").default);
 
 Vue.config.productionTip = false;
 
