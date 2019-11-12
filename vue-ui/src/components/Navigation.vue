@@ -47,27 +47,13 @@ export default {
       year: 2019
     };
   },
-  mounted() {
-    console.log("navigation mounted!");
-  },
+  mounted() {},
   created() {
     if (this.userinfo != null && this.userinfo.length > 0) {
       this.userinfo = require("../assets/data/navigation.json");
     } else {
       this.userinfo = require("../assets/data/userinfo.json");
     }
-
-    console.log("navigation imported!");
-
-    // fetch(url)
-    //   .then(res => {
-    //     console.log(res);
-    //     res.json();
-    //   })
-    //   .then(function(response) {
-    //     console.log(response);
-    //     this.links = response;
-    //   });
   }
 };
 </script>

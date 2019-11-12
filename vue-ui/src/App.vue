@@ -3,10 +3,6 @@
     <div id="nav">
       <NavBar :links="null" :userinfo="null"></NavBar>
     </div>
-    <div>
-      <div class="col">{{year.year}}</div>
-      <HelloWorld msg="this is unrelated component"></HelloWorld>
-    </div>
     <router-view />
   </div>
 </template>
@@ -25,7 +21,7 @@ export default {
     // data.user = require("../assets/data/userinfo.json");
   },
   computed: {
-    ...mapState(["year"])
+    ...mapState(["year", "productpage", "productlist"])
   }
 };
 </script>

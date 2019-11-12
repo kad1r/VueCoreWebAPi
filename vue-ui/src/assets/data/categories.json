@@ -1,0 +1,8 @@
+[
+  { "id": 1, "title": "Computers", "isactive": true, "description": "sdasd" },
+  { "id": 2, "title": "Shoes", "isactive": true, "description": "sdasd" },
+  { "id": 3, "title": "Clothing", "isactive": true, "description": "sdasd" },
+  { "id": 4, "title": "Sport", "isactive": true, "description": "sdasd" },
+  { "id": 5, "title": "Jewelry", "isactive": true, "description": "sdasd" },
+  { "id": 6, "title": "Baby/Kids", "isactive": false, "description": "sdasd" }
+]

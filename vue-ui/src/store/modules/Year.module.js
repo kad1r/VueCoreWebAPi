@@ -15,6 +15,7 @@ export const year = {
     actions: {
         updateSelectedYear({ commit }, year) {
             commit("setNewYear", year);
+            this.dispatch("productlist/load", year);
         }
     }
 };

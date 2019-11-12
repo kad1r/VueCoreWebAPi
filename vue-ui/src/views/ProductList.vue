@@ -1,6 +1,6 @@
 <template>
   <div class="table-responsive">
-    <table class="table table-hover">
+    <table v-if="this.$store.state.productlist.products.length > 0" class="table table-hover">
       <thead>
         <tr>
           <td>Select</td>
@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="product in products" :key="product.id">
+        <tr v-for="product in this.$store.state.productlist.products" :key="product.id">
           <td>
             <input type="checkbox" :value="product.id" />
           </td>
@@ -29,33 +29,13 @@
 import { mapState } from "vuex";
 
 export default {
-  name: "name",
-  data() {
-    return {
-      products: []
-    };
-  },
-  methods: {
-    refresh: function(_year) {
-      var products = require("../assets/data/product_list.json");
-
-      products = products.filter(x => {
-        return x.year == _year;
-      });
-
-      this.products = products;
-    }
-  },
-
+  name: "productlist",
+  methods: {},
   mounted() {
-    console.log("product list mounted!");
+    this.$store.dispatch("productlist/load", this.$store.state.year.year);
   },
   computed: {
-    ...mapState[("year", "message")]
-  },
-  created() {
-    console.log("product list created!");
-    this.refresh(this.$store.state.year.year);
+    ...mapState[("year", "productlist")]
   }
 };
 </script>

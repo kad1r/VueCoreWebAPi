@@ -1,26 +1,21 @@
-export const test = {
-    state: {
-        products: []
-    },
-    getters: {
-        getProducts(s) {
-            return s.state.products;
-        }
-    },
+const state = {
+    products: []
+};
+
+export const productlist = {
+    namespaced: true,
+    state: state,
     mutations: {
-        addProduct(state, product) {
-            state.producs.push(product);
-        },
-        deleteProducts(state, products) {
-            state.products.delete(producs);
-        },
-        updateProduct(state, product) {
-            state.products.update(product);
+        load(state, products) {
+            state.products = products;
         }
     },
     actions: {
-        addNewProduct({ commit }, product) {
-            commit("addProduct", product);
+        load({ commit }, year) {
+            var products = require("../../assets/data/product_list.json");
+
+            products = products.filter(x => { return x.year == year; });
+            commit("load", products);
         }
     }
 };

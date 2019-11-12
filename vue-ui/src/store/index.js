@@ -4,11 +4,13 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 import { year } from './modules/Year.module';
-import { test } from './modules/ProductList.module';
+import { productpage } from './modules/Product.module';
+import { productlist } from './modules/ProductList.module';
 
 export default new Vuex.Store({
   modules: {
-    test,
-    year
+    year,
+    productpage,
+    productlist
   }
 });

@@ -2,25 +2,22 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <span>{{this.$store.state.year}}</span>
-      </div>
-    </div>
-    <br />
-    <div class="row">
-      <div class="col">
         <div class="form-group row">
+          <input type="hidden" v-model="product.id" />
           <label class="col-sm-2" for="category">Category</label>
           <select
             v-model="product.category"
             id="category"
             class="form-control col-sm-10"
-            :class="{ 'requiredField': $v.product.category.required }"
+            :class="{ 'requiredField': $v.category.required }"
             placeholder="Product Category"
           >
-            <option value="0">Select product category</option>
-            <option value="1">Electronics</option>
-            <option value="2">Home Accessories</option>
-            <option value="2">Camping</option>
+            <option value="0">Select product category.</option>
+            <option
+              v-for="(category, index) in getActiveCategories"
+              :key="index"
+              :value="category.id"
+            >{{category.title}}</option>
           </select>
         </div>
         <div class="form-group row">
@@ -28,7 +25,7 @@
           <input
             v-model.trim="product.heading"
             class="form-control col-sm-10"
-            :class="{ 'requiredField': !$v.product.heading.required }"
+            :class="{ 'requiredField': !$v.heading.required }"
             type="text"
             id="heading"
             placeholder="Product Heading"
@@ -40,7 +37,7 @@
             v-model.trim="product.description"
             rows="5"
             class="form-control col-sm-10"
-            :class="{ 'requiredField': !$v.product.description.required }"
+            :class="{ 'requiredField': !$v.description.required }"
             id="description"
             placeholder="Product Description"
           ></textarea>
@@ -52,7 +49,7 @@
         <div class="form-group row">
           <button
             type="button"
-            v-on:click.stop.prevent="onSubmit(product)"
+            v-on:click.stop="addProduct(product)"
             class="btn btn-primary offset-sm-2"
           >Submit</button>
         </div>
@@ -63,34 +60,32 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
+import { mapState } from "vuex";
 
 export default {
   name: "product",
   data() {
     return {
       product: {
-        category: 0
-      },
-      updateComp: false,
-      year: 2019
+        id: 0,
+        category: 0,
+        heading: "",
+        description: "",
+        isactive: false
+      }
     };
   },
   validations: {
-    product: {
-      category: { required },
-      heading: { required },
-      description: { required }
-    }
+    category: { required },
+    heading: { required },
+    description: { required }
   },
   methods: {
-    refresh: function(update) {
-      this.updateComp = update;
-    },
-    onSubmit: function(product) {
-      console.log("year is -> " + this.$store.state.year.year);
-      this.$v.$touch();
-      debugger;
-      if (this.$v.$invalid || this.$v.$error) return;
+    addProduct: function(product) {
+      // reset form after submit
+      // this.$v.$touch();
+
+      // if (this.$v.$invalid || this.$v.$error) return;
 
       if (localStorage) {
         let products = JSON.parse(localStorage.getItem("products"));
@@ -99,34 +94,40 @@ export default {
           products = [];
         }
 
+        product.id = products.length + 1;
         products.push(product);
         localStorage.setItem("products", JSON.stringify(products));
+        location.href = this.$route.fullPath;
       }
-    },
-    yearChanged: function() {
-      console.log("parent triggered!");
     }
   },
-  mounted() {
-    /*
-    let lastProduct = localStorage.getItem("products");
-
-    if (lastProduct) {
-      this.product = JSON.parse(lastProduct);
-      console.log(lastProduct);
+  computed: {
+    ...mapState["productpage"],
+    getActiveCategories: function() {
+      return this.$store.state.productpage.categories.filter(x => {
+        return x.isactive;
+      });
     }
-    */
   },
   created() {
-    // fetch(url)
-    //   .then(res => {
-    //     console.log(res);
-    //     res.json();
-    //   })
-    //   .then(function(response) {
-    //     console.log(response);
-    //     this.links = response;
-    //   });
+    var categories = require("../assets/data/categories.json");
+    debugger;
+
+    this.$store.dispatch("productpage/load", {
+      categories: categories
+    });
+
+    if (Object.keys(this.$route.query).length > 0) {
+      var products = JSON.parse(localStorage.getItem("products"));
+
+      if (products.length > 0) {
+        var product = products.filter(x => {
+          return x.id === parseInt(this.$route.query.id);
+        });
+
+        this.product = product[0];
+      }
+    }
   }
 };
 </script>
