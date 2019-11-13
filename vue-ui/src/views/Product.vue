@@ -9,7 +9,7 @@
             v-model="product.category"
             id="category"
             class="form-control col-sm-10"
-            :class="{ 'requiredField': $v.category.required }"
+            :class="{ requiredField: $v.category.required }"
             placeholder="Product Category"
           >
             <option value="0">Select product category.</option>
@@ -17,7 +17,8 @@
               v-for="(category, index) in getActiveCategories"
               :key="index"
               :value="category.id"
-            >{{category.title}}</option>
+              >{{ category.title }}</option
+            >
           </select>
         </div>
         <div class="form-group row">
@@ -25,7 +26,7 @@
           <input
             v-model.trim="product.heading"
             class="form-control col-sm-10"
-            :class="{ 'requiredField': !$v.heading.required }"
+            :class="{ requiredField: !$v.heading.required }"
             type="text"
             id="heading"
             placeholder="Product Heading"
@@ -37,7 +38,7 @@
             v-model.trim="product.description"
             rows="5"
             class="form-control col-sm-10"
-            :class="{ 'requiredField': !$v.description.required }"
+            :class="{ requiredField: !$v.description.required }"
             id="description"
             placeholder="Product Description"
           ></textarea>
@@ -51,7 +52,9 @@
             type="button"
             v-on:click.stop="addProduct(product)"
             class="btn btn-primary offset-sm-2"
-          >Submit</button>
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>
@@ -111,7 +114,6 @@ export default {
   },
   created() {
     var categories = require("../assets/data/categories.json");
-    debugger;
 
     this.$store.dispatch("productpage/load", {
       categories: categories
@@ -120,7 +122,7 @@ export default {
     if (Object.keys(this.$route.query).length > 0) {
       var products = JSON.parse(localStorage.getItem("products"));
 
-      if (products.length > 0) {
+      if (products.length > 0 && typeof this.$route.query.id !== "undefined") {
         var product = products.filter(x => {
           return x.id === parseInt(this.$route.query.id);
         });

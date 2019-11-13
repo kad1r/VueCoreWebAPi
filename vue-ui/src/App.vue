@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <NavBar :links="null" :userinfo="null"></NavBar>
+      <Toolbar :menuitem="getMenuItem"></Toolbar>
     </div>
     <router-view />
   </div>
@@ -15,13 +16,27 @@ export default {
   data() {
     return {};
   },
-  created() {
-    // let user = require("../assets/data/userinfo.json");
-    // console.log(JSON.stringify(user));
-    // data.user = require("../assets/data/userinfo.json");
+  mounted() {
+    console.log("xxx");
   },
+  created() {},
   computed: {
-    ...mapState(["year", "productpage", "productlist"])
+    ...mapState(["year", "productpage", "productlist"]),
+    getMenuItem: function() {
+      let menu = {},
+        menu_id = 0,
+        user = require("./assets/data/userinfo.json");
+
+      if (typeof this.$route.query.menu_id !== "undefined") {
+        menu_id = parseInt(this.$route.query.menu_id);
+
+        menu = user.links.filter(x => x.id === menu_id);
+      }
+
+      console.log(menu);
+
+      return menu[0];
+    }
   }
 };
 </script>

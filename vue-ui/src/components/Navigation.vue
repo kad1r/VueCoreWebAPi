@@ -16,7 +16,9 @@
     <div class="collapse navbar-collapse mr-auto" id="authentication">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" v-for="link in userinfo.links" :key="link.Id">
-          <router-link :to="link.url">{{link.title}}</router-link>
+          <router-link v-if="link.menu_auth.read" :to="link.url">
+            {{ link.title }}
+          </router-link>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -24,11 +26,15 @@
           <a href="javascript:void(0)">Login</a>
         </li>
         <li v-else>
-          <a data-id="userinfo.user.id" href="javascript:void(0)">{{userinfo.user.fullname}}</a>
+          <a data-id="userinfo.user.id" href="javascript:void(0)">{{
+            userinfo.user.fullname
+          }}</a>
         </li>
       </ul>
       <NavigationYears class="ml-auto" @yearChanged="year"></NavigationYears>
-      <span style="margin-left:5px;">Selected Year: {{this.$store.state.year.year}}</span>
+      <span style="margin-left:5px;"
+        >Selected Year: {{ this.$store.state.year.year }}</span
+      >
     </div>
   </nav>
 </template>

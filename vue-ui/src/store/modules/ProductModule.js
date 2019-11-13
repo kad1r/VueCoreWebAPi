@@ -1,4 +1,4 @@
-const getDefaultState = () => {
+const initialState = () => {
     return {
         categories: []
     };
@@ -6,7 +6,7 @@ const getDefaultState = () => {
 
 export const productpage = {
     namespaced: true,
-    state: getDefaultState(),
+    state: initialState(),
     getters: {
         // getProduct(s) {
         //     return s.state.product;
@@ -19,7 +19,7 @@ export const productpage = {
         load(state, obj) {
             // state.product =
             //     Object.keys(obj.product).length === 0
-            //         ? getDefaultState().product
+            //         ? initialState().product
             //         : obj.product;
             state.categories = obj.categories.length > 0 ? obj.categories : [];
         }

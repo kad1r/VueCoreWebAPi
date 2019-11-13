@@ -1,10 +1,60 @@
 {
   "user": { "id": 1, "fullname": "Kadir Avcı" },
   "links": [
-    { "id": 1, "title": "Home", "url": "/" },
-    { "id": 2, "title": "Categories", "url": "/category" },
-    { "id": 3, "title": "Product", "url": "/product" },
-    { "id": 4, "title": "Product List", "url": "/productlist" },
-    { "id": 5, "title": "Help", "url": "/help" }
+    {
+      "id": 1,
+      "title": "Home",
+      "url": "/",
+      "menu_auth": {
+        "insert": true,
+        "update": true,
+        "delete": true,
+        "read": true
+      }
+    },
+    {
+      "id": 2,
+      "title": "Categories",
+      "url": "/category?menu_id=2",
+      "menu_auth": {
+        "insert": false,
+        "update": false,
+        "delete": false,
+        "read": false
+      }
+    },
+    {
+      "id": 3,
+      "title": "Product",
+      "url": "/product?menu_id=3",
+      "menu_auth": {
+        "insert": false,
+        "update": false,
+        "delete": false,
+        "read": true
+      }
+    },
+    {
+      "id": 4,
+      "title": "Product List",
+      "url": "/productlist?menu_id=4",
+      "menu_auth": {
+        "insert": true,
+        "update": true,
+        "delete": true,
+        "read": true
+      }
+    },
+    {
+      "id": 5,
+      "title": "Help",
+      "url": "/help?menu_id=5",
+      "menu_auth": {
+        "insert": true,
+        "update": true,
+        "delete": true,
+        "read": true
+      }
+    }
   ]
 }
