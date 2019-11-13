@@ -5,12 +5,56 @@
       "id": 1,
       "title": "Home",
       "url": "/",
-      "menu_auth": {
-        "insert": true,
-        "update": true,
-        "delete": true,
-        "read": true
-      }
+      "menu_auth": [
+        {
+          "title": "add",
+          "enabled": false,
+          "css": "far fa-plus-square",
+          "options": { "pdf": true, "excel": true },
+          "sequence": 2,
+          "show": true
+        },
+        {
+          "title": "update",
+          "enabled": false,
+          "css": "far fa-plus-square",
+          "options": { "pdf": true, "excel": true },
+          "sequence": 3,
+          "show": true
+        },
+        {
+          "title": "delete",
+          "enabled": false,
+          "css": "far fa-plus-square",
+          "options": { "pdf": true, "excel": true },
+          "sequence": 4,
+          "show": true
+        },
+        {
+          "title": "view",
+          "enabled": false,
+          "css": "far fa-plus-square",
+          "options": { "pdf": true, "excel": true },
+          "sequence": 1,
+          "show": true
+        },
+        {
+          "title": "edit",
+          "enabled": false,
+          "css": "far fa-plus-square",
+          "options": { "pdf": true, "excel": true },
+          "sequence": 5,
+          "show": true
+        },
+        {
+          "title": "export",
+          "enabled": false,
+          "css": "far fa-plus-square",
+          "options": { "pdf": true, "excel": true },
+          "sequence": 6,
+          "show": true
+        }
+      ]
     },
     {
       "id": 2,
