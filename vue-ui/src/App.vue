@@ -2,9 +2,13 @@
   <div id="app">
     <div id="nav">
       <NavBar :links="null" :userinfo="null"></NavBar>
-      <Toolbar :menuitem="getMenuItem"></Toolbar>
+      <div class="col-12">
+        <Toolbar :menuitem="getMenuItem"></Toolbar>
+      </div>
     </div>
-    <router-view />
+    <div class="col">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -14,10 +18,15 @@ import { mapState } from "vuex";
 export default {
   name: "app",
   data() {
-    return {};
+    return {
+      saveFunction: Function,
+      deleteFunction: Function,
+      editFunction: Function,
+      exportFunction: Function
+    };
   },
   mounted() {
-    console.log("xxx");
+    console.log("app mounted!");
   },
   created() {},
   computed: {
@@ -30,12 +39,10 @@ export default {
       if (typeof this.$route.query.menu_id !== "undefined") {
         menu_id = parseInt(this.$route.query.menu_id);
 
-        menu = user.links.filter(x => x.id === menu_id);
+        menu = user.links.filter(x => x.id === menu_id)[0];
       }
 
-      console.log(menu);
-
-      return menu[0];
+      return menu;
     }
   }
 };
@@ -43,6 +50,10 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Roboto|Rubik&display=swap&subset=latin-ext");
+
+* {
+  font-size: 15px;
+}
 
 #app {
   font-family: "Roboto", Helvetica, Arial, sans-serif;

@@ -1,61 +1,50 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="form-group row">
-          <input type="hidden" v-model="product.id" />
-          <label class="col-sm-2" for="category">Category</label>
-          <select
-            v-model="product.category"
-            id="category"
-            class="form-control col-sm-10"
-            :class="{ requiredField: $v.category.required }"
-            placeholder="Product Category"
-          >
-            <option value="0">Select product category.</option>
-            <option
-              v-for="(category, index) in getActiveCategories"
-              :key="index"
-              :value="category.id"
-              >{{ category.title }}</option
-            >
-          </select>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2" for="heading">Heading</label>
-          <input
-            v-model.trim="product.heading"
-            class="form-control col-sm-10"
-            :class="{ requiredField: !$v.heading.required }"
-            type="text"
-            id="heading"
-            placeholder="Product Heading"
-          />
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-2" for="description">Description</label>
-          <textarea
-            v-model.trim="product.description"
-            rows="5"
-            class="form-control col-sm-10"
-            :class="{ requiredField: !$v.description.required }"
-            id="description"
-            placeholder="Product Description"
-          ></textarea>
-        </div>
-        <div class="form-group row chekbox">
-          <label class="col-sm-2" for="isactive">Is Active?</label>
-          <input v-model="product.isactive" type="checkbox" id="isactive" />
-        </div>
-        <div class="form-group row">
-          <button
-            type="button"
-            v-on:click.stop="addProduct(product)"
-            class="btn btn-primary offset-sm-2"
-          >
-            Submit
-          </button>
-        </div>
+  <div>
+    <b-alert show>Default Alert</b-alert>
+    <div class="col-6">
+      <div class="form-group row">
+        <input type="hidden" v-model="product.id" />
+        <label class="col-sm-2" for="category">Category</label>
+        <select
+          v-model="product.category"
+          id="category"
+          class="form-control col-sm-10"
+          :class="{ requiredField: $v.category.required }"
+          placeholder="Product Category"
+        >
+          <option value="0">Select product category.</option>
+          <option
+            v-for="(category, index) in getActiveCategories"
+            :key="index"
+            :value="category.id"
+          >{{ category.title }}</option>
+        </select>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2" for="heading">Heading</label>
+        <input
+          v-model.trim="product.heading"
+          class="form-control col-sm-10"
+          :class="{ requiredField: !$v.heading.required }"
+          type="text"
+          id="heading"
+          placeholder="Product Heading"
+        />
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2" for="description">Description</label>
+        <textarea
+          v-model.trim="product.description"
+          rows="5"
+          class="form-control col-sm-10"
+          :class="{ requiredField: !$v.description.required }"
+          id="description"
+          placeholder="Product Description"
+        ></textarea>
+      </div>
+      <div class="form-group row chekbox">
+        <label class="col-sm-2" for="isactive">Is Active?</label>
+        <input v-model="product.isactive" type="checkbox" id="isactive" />
       </div>
     </div>
   </div>
@@ -84,7 +73,8 @@ export default {
     description: { required }
   },
   methods: {
-    addProduct: function(product) {
+    addProduct: function() {
+      var product = this.product;
       // reset form after submit
       // this.$v.$touch();
 
@@ -130,6 +120,10 @@ export default {
         this.product = product[0];
       }
     }
+
+    this.$parent.saveFunction = this.addProduct;
+
+    // console.log(this.$route);
   }
 };
 </script>
