@@ -4,13 +4,7 @@
       <div class="float-left">
         <div class="toolbar">
           <div class="btn-group" role="group">
-            <button
-              type="button"
-              class="btn btn-toolbar"
-              v-for="(item, index) in getAvailableToolbar"
-              :key="index"
-              @click.stop="(item.title === 'save') ? formSubmit() : ''"
-            >
+            <button type="button" class="btn btn-toolbar" v-for="(item, index) in getAvailableToolbar" :key="index" @click.stop="item.title === 'save' ? formSubmit() : item.title === 'delete' ? deleteSelected() : ''">
               <i :class="item.css"></i>
             </button>
           </div>
@@ -42,14 +36,16 @@ export default {
       type: Object,
       default() {
         return {};
-      }
-    }
+      },
+    },
   },
   methods: {
     formSubmit: function() {
-      debugger;
       this.$emit(this.$parent.saveFunction());
-    }
+    },
+    deleteSelected: function() {
+      this.$emit(this.$parent.deleteFunction());
+    },
   },
   computed: {
     getAvailableToolbar: function() {
@@ -58,18 +54,18 @@ export default {
         typeof this.menuitem.menu_auth !== "undefined"
       ) {
         return this.menuitem.menu_auth
-          .filter(x => {
+          .filter((x) => {
             return x.show;
           })
           .sort((x, y) => (x.sequence > y.sequence ? 1 : -1));
       } else {
         return [];
       }
-    }
+    },
   },
   created() {
-    console.log(this);
-  }
+    console.log("toolbar created!");
+  },
 };
 </script>
 

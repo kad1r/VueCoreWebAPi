@@ -12,14 +12,12 @@ export default {
   methods: {
     ...mapActions(["updateSelectedYear"]),
     updateYear: function(event) {
-      console.log(event.target.value);
-      console.log(this.$route.path);
-      this.updateSelectedYear(event.target.value);
-    }
+      this.$store.dispatch("year/updateSelectedYear", event.target.value);
+    },
   },
   computed: {
     ...mapState["year"],
-    ...mapGetters(["getSelectedYear"])
-  }
+    ...mapGetters(["getSelectedYear"]),
+  },
 };
 </script>

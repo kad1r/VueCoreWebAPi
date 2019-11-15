@@ -8,33 +8,35 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
   },
   {
-    path: "/product",
-    name: "product",
-    isForm: true,
-    component: () =>
-      import("../views/Product.vue")
+    path: "/product/:id?",
+    name: "productdetail",
+    component: () => import("../views/Product.vue"),
   },
   {
     path: "/productlist",
     name: "productlist",
-    component: () =>
-      import("../views/ProductList.vue")
+    component: () => import("../views/ProductList.vue"),
   },
   {
     path: "/about",
     name: "about",
-    component: () =>
-      import("../views/About.vue")
-  }
+    component: () => import("../views/About.vue"),
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const store = require("../store");
+  store.default.dispatch("resetAllStates");
+  next();
 });
 
 router.afterEach(() => {

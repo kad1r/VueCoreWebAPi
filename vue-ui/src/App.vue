@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="col">
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </div>
   </div>
 </template>
@@ -20,9 +20,10 @@ export default {
   data() {
     return {
       saveFunction: Function,
-      deleteFunction: Function,
       editFunction: Function,
-      exportFunction: Function
+      deleteFunction: Function,
+      clearFormFunction: Function,
+      exportFunction: Function,
     };
   },
   mounted() {
@@ -30,7 +31,7 @@ export default {
   },
   created() {},
   computed: {
-    ...mapState(["year", "productpage", "productlist"]),
+    ...mapState(["app", "year", "productpage", "productlist"]),
     getMenuItem: function() {
       let menu = {},
         menu_id = 0,
@@ -39,12 +40,12 @@ export default {
       if (typeof this.$route.query.menu_id !== "undefined") {
         menu_id = parseInt(this.$route.query.menu_id);
 
-        menu = user.links.filter(x => x.id === menu_id)[0];
+        menu = user.links.filter((x) => x.id === menu_id)[0];
       }
 
       return menu;
-    }
-  }
+    },
+  },
 };
 </script>
 

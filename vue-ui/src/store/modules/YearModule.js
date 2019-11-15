@@ -5,6 +5,7 @@ const initialState = () => {
 };
 
 export const year = {
+    namespaced: true,
     state: initialState(),
     getters: {
         getSelectedYear(s) {
@@ -28,6 +29,7 @@ export const year = {
             commit("reset");
         },
         updateSelectedYear({ commit }, year) {
+            debugger;
             commit("setNewYear", year);
             this.dispatch("productlist/load", year);
         }

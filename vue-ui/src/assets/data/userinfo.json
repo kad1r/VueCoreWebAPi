@@ -75,6 +75,17 @@
           },
           "sequence": 6,
           "show": true
+        },
+        {
+          "title": "help",
+          "enabled": false,
+          "css": "fa fa-question-circle",
+          "options": {
+            "pdf": true,
+            "excel": true
+          },
+          "sequence": 8,
+          "show": true
         }
       ]
     },
@@ -144,6 +155,28 @@
           },
           "sequence": 6,
           "show": true
+        },
+        {
+          "title": "clear",
+          "enabled": false,
+          "css": "fa fa-eraser",
+          "options": {
+            "pdf": true,
+            "excel": true
+          },
+          "sequence": 7,
+          "show": true
+        },
+        {
+          "title": "help",
+          "enabled": false,
+          "css": "fa fa-question-circle",
+          "options": {
+            "pdf": true,
+            "excel": true
+          },
+          "sequence": 8,
+          "show": true
         }
       ]
     },
@@ -212,6 +245,17 @@
             "excel": true
           },
           "sequence": 6,
+          "show": true
+        },
+        {
+          "title": "help",
+          "enabled": false,
+          "css": "fa fa-question-circle",
+          "options": {
+            "pdf": true,
+            "excel": true
+          },
+          "sequence": 7,
           "show": true
         }
       ]

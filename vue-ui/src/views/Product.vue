@@ -5,42 +5,18 @@
       <div class="form-group row">
         <input type="hidden" v-model="product.id" />
         <label class="col-sm-2" for="category">Category</label>
-        <select
-          v-model="product.category"
-          id="category"
-          class="form-control col-sm-10"
-          :class="{ requiredField: $v.category.required }"
-          placeholder="Product Category"
-        >
+        <select v-model="product.category" id="category" class="form-control col-sm-10" :class="{ requiredField: $v.category.required }" placeholder="Product Category">
           <option value="0">Select product category.</option>
-          <option
-            v-for="(category, index) in getActiveCategories"
-            :key="index"
-            :value="category.id"
-          >{{ category.title }}</option>
+          <option v-for="(category, index) in getActiveCategories" :key="index" :value="category.id">{{ category.title }}</option>
         </select>
       </div>
       <div class="form-group row">
         <label class="col-sm-2" for="heading">Heading</label>
-        <input
-          v-model.trim="product.heading"
-          class="form-control col-sm-10"
-          :class="{ requiredField: !$v.heading.required }"
-          type="text"
-          id="heading"
-          placeholder="Product Heading"
-        />
+        <input v-model.trim="product.heading" class="form-control col-sm-10" :class="{ requiredField: !$v.heading.required }" type="text" id="heading" placeholder="Product Heading" />
       </div>
       <div class="form-group row">
         <label class="col-sm-2" for="description">Description</label>
-        <textarea
-          v-model.trim="product.description"
-          rows="5"
-          class="form-control col-sm-10"
-          :class="{ requiredField: !$v.description.required }"
-          id="description"
-          placeholder="Product Description"
-        ></textarea>
+        <textarea v-model.trim="product.description" rows="5" class="form-control col-sm-10" :class="{ requiredField: !$v.description.required }" id="description" placeholder="Product Description"></textarea>
       </div>
       <div class="form-group row chekbox">
         <label class="col-sm-2" for="isactive">Is Active?</label>
@@ -63,14 +39,14 @@ export default {
         category: 0,
         heading: "",
         description: "",
-        isactive: false
-      }
+        isactive: false,
+      },
     };
   },
   validations: {
     category: { required },
     heading: { required },
-    description: { required }
+    description: { required },
   },
   methods: {
     addProduct: function() {
@@ -92,28 +68,28 @@ export default {
         localStorage.setItem("products", JSON.stringify(products));
         location.href = this.$route.fullPath;
       }
-    }
+    },
   },
   computed: {
     ...mapState["productpage"],
     getActiveCategories: function() {
-      return this.$store.state.productpage.categories.filter(x => {
+      return this.$store.state.productpage.categories.filter((x) => {
         return x.isactive;
       });
-    }
+    },
   },
   created() {
     var categories = require("../assets/data/categories.json");
 
     this.$store.dispatch("productpage/load", {
-      categories: categories
+      categories: categories,
     });
 
     if (Object.keys(this.$route.query).length > 0) {
       var products = JSON.parse(localStorage.getItem("products"));
 
       if (products.length > 0 && typeof this.$route.query.id !== "undefined") {
-        var product = products.filter(x => {
+        var product = products.filter((x) => {
           return x.id === parseInt(this.$route.query.id);
         });
 
@@ -122,8 +98,6 @@ export default {
     }
 
     this.$parent.saveFunction = this.addProduct;
-
-    // console.log(this.$route);
-  }
+  },
 };
 </script>
