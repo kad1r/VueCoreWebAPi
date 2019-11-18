@@ -261,7 +261,12 @@
       ]
     },
     {
-      "id": 5,
+      "id": 6,
+      "title": "Product Activity",
+      "url": "/productactivity?menu_id=6"
+    },
+    {
+      "id": 7,
       "title": "Help",
       "url": "/help?menu_id=5"
     }
