@@ -1,10 +1,9 @@
 const initialState = () => {
   return {
-    selectedRows: [],
-    selectedSubRows: [],
     searchArr: [],
     sortArr: [],
-    selected: 0,
+    comps: ["About", "Home", "Product", "ProductActivity", "ProductList"],
+    lastComponent: null,
   };
 };
 const state = () => initialState();

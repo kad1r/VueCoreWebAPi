@@ -1,0 +1,70 @@
+{
+  "category": 1,
+  "heading": "Dell XPS Gaming",
+  "description": "Gaming Laptop",
+  "activities": [
+    {
+      "id": 1,
+      "type": 1,
+      "warehouse": 2,
+      "invoiceno": "123",
+      "barcode": "1234",
+      "date": "19.11.2019",
+      "isdeleted": false
+    },
+    {
+      "id": 2,
+      "type": 1,
+      "warehouse": 1,
+      "invoiceno": "1234",
+      "barcode": "12345",
+      "date": "19.11.2019",
+      "isdeleted": false
+    },
+    {
+      "id": 3,
+      "type": 1,
+      "warehouse": 3,
+      "invoiceno": "0123",
+      "barcode": "01234",
+      "date": "19.11.2019",
+      "isdeleted": false
+    },
+    {
+      "id": 4,
+      "type": 2,
+      "warehouse": 1,
+      "invoiceno": "12123",
+      "barcode": "121234",
+      "date": "19.11.2019",
+      "isdeleted": false
+    },
+    {
+      "id": 5,
+      "type": 1,
+      "warehouse": 3,
+      "invoiceno": "33123",
+      "barcode": "331234",
+      "date": "19.11.2019",
+      "isdeleted": false
+    },
+    {
+      "id": 6,
+      "type": 3,
+      "warehouse": 2,
+      "invoiceno": "32123",
+      "barcode": "321234",
+      "date": "19.11.2019",
+      "isdeleted": false
+    },
+    {
+      "id": 7,
+      "type": 3,
+      "warehouse": 3,
+      "invoiceno": "44123",
+      "barcode": "441234",
+      "date": "19.11.2019",
+      "isdeleted": false
+    }
+  ]
+}

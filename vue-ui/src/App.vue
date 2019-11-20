@@ -4,10 +4,34 @@
       <NavBar :links="null" :userinfo="null"></NavBar>
       <div class="col-12">
         <Toolbar :menuitem="getMenuItem"></Toolbar>
+        <keep-alive>
+          <component :is="this.$store.state.app.lastComponent"></component>
+        </keep-alive>
       </div>
     </div>
     <div class="col">
       <router-view :key="$route.fullPath" />
+    </div>
+    <div v-if="showModal">
+      <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" @click="showModal=false">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                  modal body
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -19,6 +43,7 @@ export default {
   name: "app",
   data() {
     return {
+      showModal: false,
       saveFunction: Function,
       editFunction: Function,
       deleteFunction: Function,
@@ -29,7 +54,10 @@ export default {
   mounted() {
     console.log("app mounted!");
   },
-  created() {},
+  created() {
+    this.$store.state.app.lastComponent = () =>
+      import(`@/views/${this.$store.state.app.comps[0]}.vue`);
+  },
   computed: {
     ...mapState(["app", "year", "productpage", "productlist"]),
     getMenuItem: function() {
@@ -75,5 +103,22 @@ label {
 .btn-primary {
   background-color: #8e44ad !important;
   border-color: #8e44ad !important;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
 }
 </style>

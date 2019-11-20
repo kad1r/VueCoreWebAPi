@@ -67,7 +67,7 @@
                 </td>
               </tr>
               <tr>
-                <td></td>
+                <td><input type="checkbox" name="chkbx" @change="checkUncheckAll"></td>
                 <td>Type</td>
                 <td>WareHouse</td>
                 <td>Invoice</td>
@@ -77,7 +77,7 @@
             </thead>
             <tbody>
               <tr v-for="(activity, index) in getActivities" :key="index">
-                <td><input type="checkbox" name="chkbx" :value="activity.id" @change="addToSelectedList"></td>
+                <td><input type="checkbox" name="chkbx" v-model="selectedRows" :value="activity.id"></td>
                 <td>{{activity.type}}</td>
                 <td>{{activity.warehouse}}</td>
                 <td>{{activity.invoiceno}}</td>
@@ -151,10 +151,12 @@ export default {
             self.selectedRows.indexOf(self.product.activities[index].id) > -1
           ) {
             self.product.activities.splice(index, 1);
+            index--;
           }
-          index--;
         }
       }
+
+      self.selectedRows.length = 0;
     },
     editActivity: function() {
       let self = this;
@@ -181,11 +183,26 @@ export default {
         this.selectedRows.splice(index, 1);
       }
     },
+    checkUncheckAll: function(event) {
+      let self = this,
+        checked = event.target.checked;
+
+      if (checked) {
+        self.product.activities.forEach((activity) => {
+          self.selectedRows.push(activity.id);
+        });
+      } else {
+        self.selectedRows = [];
+      }
+    },
   },
   computed: {
     getActivities: function() {
       return this.product.activities;
     },
+  },
+  created() {
+    this.product = require("../assets/data/product.json");
   },
 };
 </script>
